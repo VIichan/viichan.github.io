@@ -402,7 +402,7 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 30000, att
     let messageEle = document.createElement('span');
     messageEle.classList.add('message');
 
-    messageEle.innerText = (message.length < 29) ? message : message.splice(0,28) + "...";
+    messageEle.innerText = message;
     
     chatUserAvatar.classList.add('hide');
     
@@ -552,7 +552,7 @@ function addEmoteDOM(ele, data) {
   data.forEach(n => {
     let out = null;
     if (typeof n === 'string') {
-      out = document.createTextNode(n);
+      out = (n.length < 29) ? document.createTextNode(n) : document.createTextNode(n.splice(0,28) + "...");
     } else
     {
       let { type: [type, subtype], code } = n;

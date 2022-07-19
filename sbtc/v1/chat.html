@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>SBTC </title>
+  <link rel="stylesheet" href="./style.css">
+  <script>
+    var twitchID = '';
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    // const params = Object.fromEntries(urlSearchParams.entries());
+    const params = {};
+    urlSearchParams.forEach((value, key) => {
+      params[key] = value;
+    });
+    
+    if (params.id != null) {
+      twitchID = params.id;
+      document.title = document.title + " " + params.id;
+    } else if (params.id == null || params.id == '') {
+      document.title = document.title + " v1";
+    }
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3QXDYGK4CW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-3QXDYGK4CW');
+  </script>
+</head>
+
+<body>
+
+  <div id="chat"></div>
+  <div id="id" twitchId="overgd22"></div>
+  <div id="color" color=""></div>
+
+  <script src='./randomColor.js'></script>
+  <script src='./tmi.js'></script>
+  <script src='https://twemoji.maxcdn.com/2/twemoji.min.js?2.3.0'></script>
+  <script src="./script.js"></script>
+
+</body>
+
+</html>

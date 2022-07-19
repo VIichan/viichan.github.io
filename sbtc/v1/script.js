@@ -227,30 +227,30 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 30000, att
   chatUserAvatar.classList.add('chat-user-avatar');
   
   // 말풍선 일반, 예측 구분
-  if (data.badges !== undefined && data.badges !== null) {
-    Object.keys(data.badges).
-    forEach(badgeType => {
-      let version = data.badges[badgeType];
-      // 트위치 예측 이모티콘으로 구분
-      if (badgeType == 'predictions') {
-        let number = version.split('-');
-        chatType = 'prediction';
-        predictionNum = parseInt(number[number.length - 1]);
-        chatBox.setAttribute('type', chatType);
-        chatBox.setAttribute('prediction', predictionNum);
-      } else {
-        chatBox.setAttribute('type', chatType);
-      }
-    }, []);
-  } else {
-    chatBox.setAttribute('type', 'normal');
-  }
+  //if (data.badges !== undefined && data.badges !== null) {
+  //  Object.keys(data.badges).
+  //  forEach(badgeType => {
+  //    let version = data.badges[badgeType];
+  //    // 트위치 예측 이모티콘으로 구분
+  //    if (badgeType == 'predictions') {
+  //      let number = version.split('-');
+  //      chatType = 'prediction';
+  //      predictionNum = parseInt(number[number.length - 1]);
+  //      chatBox.setAttribute('type', chatType);
+  //      chatBox.setAttribute('prediction', predictionNum);
+  //    } else {
+  //      chatBox.setAttribute('type', chatType);
+  //    }
+  //  }, []);
+  //} else {
+  //  chatBox.setAttribute('type', 'normal');
+  //}
 
-  if (params.prediction == 1) {
-    if (chatType === 'normal' && type !== 'admin') {
-      return false;
-    }
-  }
+  //if (params.prediction == 1) {
+  //  if (chatType === 'normal' && type !== 'admin') {
+  //    return false;
+  //  }
+  //}
   
   // console.log('type', chatBox.getAttribute('type'));
   // console.log('prediction', chatBox.getAttribute('prediction'));

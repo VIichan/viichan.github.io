@@ -225,35 +225,6 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 30000, att
   chatLine_tail_shadow.classList.add('chat-line-inner-tail-shadow');
   chatUser.classList.add('chat-user');
   chatUserAvatar.classList.add('chat-user-avatar');
-  
-  // 말풍선 일반, 예측 구분
-  //if (data.badges !== undefined && data.badges !== null) {
-  //  Object.keys(data.badges).
-  //  forEach(badgeType => {
-  //    let version = data.badges[badgeType];
-  //    // 트위치 예측 이모티콘으로 구분
-  //    if (badgeType == 'predictions') {
-  //      let number = version.split('-');
-  //      chatType = 'prediction';
-  //      predictionNum = parseInt(number[number.length - 1]);
-  //      chatBox.setAttribute('type', chatType);
-  //      chatBox.setAttribute('prediction', predictionNum);
-  //    } else {
-  //      chatBox.setAttribute('type', chatType);
-  //    }
-  //  }, []);
-  //} else {
-  //  chatBox.setAttribute('type', 'normal');
-  //}
-
-  //if (params.prediction == 1) {
-  //  if (chatType === 'normal' && type !== 'admin') {
-  //    return false;
-  //  }
-  //}
-  
-  // console.log('type', chatBox.getAttribute('type'));
-  // console.log('prediction', chatBox.getAttribute('prediction'));
 
   // 말풍선 위치 지정
   let left_pos = Math.floor(mulberry32(Date.now()) * 8000 + 1) / 100;
@@ -430,15 +401,11 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 30000, att
 
     let messageEle = document.createElement('span');
     messageEle.classList.add('message');
-    messageEle.innerText = message;
+
+    messageEle.innerText = (message.length < 29) ? message : message.splice(0,28) + "...";
     
-    if (params.avatar == '1' ||  params.avatar == 'gridy' || params.avatar == undefined) {
-      chatUserAvatar.setAttribute('style', 'background: url(https://avatars.dicebear.com/api/gridy/admin.svg);');
-    } else if (params.avatar == '0') {
-      chatUserAvatar.classList.add('hide');
-    } else {
-      chatUserAvatar.setAttribute('style', 'background: url(https://avatars.dicebear.com/api/gridy/admin.svg);');
-    }
+    chatUserAvatar.classList.add('hide');
+    
     chatLineInner.appendChild(messageEle);
 
     normalChats.push({ id: 'admin', date: Date.now(), pos: left_pos });

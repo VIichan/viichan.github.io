@@ -402,124 +402,23 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 30000, att
     // console.log(data['room-id']);
     let spaceEle = document.createElement('span');
     spaceEle.innerText = ' ';
-    let badgeEle = document.createElement('span');
-    //if ('badges' in data && data.badges !== null) {
-    //  badgeEle.classList.add('badges');
-    //  let badgeGroup = Object.assign({}, twitchBadgeCache.data.global, twitchBadgeCache.data[chan] || {});
-    //  let badges = Object.keys(data.badges).
-    //  forEach(type => {
-    //    let version = data.badges[type];
-    //    // 트위치 예측 이모티콘 구분
-    //    if (type == 'predictions') {
-    //      let number = version.split('-');
-    //    }
-    //    let group = badgeGroup[type];
-    //    if (group && version in group.versions) {
-    //      let url = group.versions[version].image_url_1x;
-    //      let ele = document.createElement('img');
-    //      ele.setAttribute('src', url);
-    //      ele.setAttribute('badgeType', type);
-    //      ele.setAttribute('alt', type);
-    //      ele.classList.add('badge');
-    //      badgeEle.appendChild(ele);
-    //    }
-    //  }, []);
-    //}
-    
-    let nameEle = document.createElement('span');
-    nameEle.classList.add('user-name');
-    // nameEle.innerText = Date.now();
-    nameEle.innerText = data.name;
-
-    if (data.name.length > 7) {
-      nameEle.style.fontSize = '0.8em';
-    } else if (data.name.length >= 10) {
-      nameEle.style.fontSize = '0.5em';
-    } else if (data.name.length > 12) {
-      nameEle.style.fontSize = '0.2em';
-    } else if (data.name.length > 20) {
-      nameEle.style.fontSize = '0.1em';
-    }
-    nameEle.style.color = random_color_light;
-    nameEle.style.background = random_color;
-    nameEle.style.borderColor = random_color;
 
     messageEle.classList.add('message');
-    messageEle.style.background = random_color_light+"33";
+    messageEle.style.background = "#b0b0b0"+"33";
 
     let finalMessage = handleEmotes(chan, data.emotes || {}, message);
     addEmoteDOM(messageEle, finalMessage);
-
-    chatUser.appendChild(badgeEle);
     
     chatLineInner.appendChild(spaceEle);
-
-    // 유저 정보 표시 여부
-    if (params.userinfo == 1 || params.userinfo == undefined) {
-      chatLineInner.appendChild(nameEle);
-    }
     // 테마 선택
     if (params.theme == 'dark') { // 다크 테마
       chatBox.classList.add('dark');
 
-      chatLineInner.style.borderColor = random_color_light;
+      chatLineInner.style.borderColor = "#eae0c0";
       chatLineInner.style.background = '#000';
-      chatLineInner.style.color = random_color_light;
+      chatLineInner.style.color = "#eae0c0";
 
-      nameEle.style.color = random_color_dark;
-      nameEle.style.background = random_color_light;
-      nameEle.style.borderColor = random_color_light;
-
-      chatLine_tail.style.borderColor = random_color_light + " transparent";
-    } else if (params.theme == 'mlt') { // MLT 테마
-      chatBox.classList.add('mlt');
-
-      let margin_bottom = Math.floor(mulberry32(Date.now()) * 74 + 1) + 'px';
-
-      chatLine_.style.marginBottom = margin_bottom;
-    }
-    // 피버 모드
-    if (params.fever == '1') {
-      chatLineInner.classList.add('fever');
-    }
-    // 트위치 이모티콘 한개 크게
-    if (params.one == '0') {
-      if (finalMessage.length != 1) {
-        
-      }
-    } else {
-      if (finalMessage.length == 1 && finalMessage[0].type) {
-        messageEle.classList.add('onecharacter');
-      }
-    }
-    // 아바타 선택
-    if  (params.avatar == '1' ||  params.avatar == 'gridy' || params.avatar == undefined) {
-      chatUserAvatar.setAttribute('style', 'background: url(https://avatars.dicebear.com/api/gridy/'+ data['user-id'] +'.svg);');
-    } else if (params.avatar == '0') {
-      chatUserAvatar.classList.add('hide');
-    } else {
-      chatUserAvatar.setAttribute('style', 'background: url(https://avatars.dicebear.com/api/gridy/'+ data['user-id'] +'.svg);');
-    }
-    // ㅋㅋㅋ 웃는 채팅 더 흔들리게
-    if (params.lol == '0') {
-
-    } else if (params.lol == '1') {
-      finalMessage.forEach(n => {
-        if (typeof n === 'string') {
-          let lolword = n.search('ㅋㅋㅋ');
-          if (lolword >= 0) {
-            chatLine_.classList.add('lol-animation');
-          }
-        }
-      });
-    }
-    // 스트리머 메세지는 안보이게
-    if (params.streamermessage == '0') {
-      if (data.username == twitchID) {
-        return false;
-      }
-    } else if (params.streamermessage == '1') {
-
+      chatLine_tail.style.borderColor = "#eae0c0" + " transparent";
     }
     chatLineInner.appendChild(messageEle);
 

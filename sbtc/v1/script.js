@@ -403,28 +403,28 @@ function showMessage({ chan, type, message = '', data = {}, timeout = 30000, att
     let spaceEle = document.createElement('span');
     spaceEle.innerText = ' ';
     let badgeEle = document.createElement('span');
-    if ('badges' in data && data.badges !== null) {
-      badgeEle.classList.add('badges');
-      let badgeGroup = Object.assign({}, twitchBadgeCache.data.global, twitchBadgeCache.data[chan] || {});
-      let badges = Object.keys(data.badges).
-      forEach(type => {
-        let version = data.badges[type];
-        // 트위치 예측 이모티콘 구분
-        if (type == 'predictions') {
-          let number = version.split('-');
-        }
-        let group = badgeGroup[type];
-        if (group && version in group.versions) {
-          let url = group.versions[version].image_url_1x;
-          let ele = document.createElement('img');
-          ele.setAttribute('src', url);
-          ele.setAttribute('badgeType', type);
-          ele.setAttribute('alt', type);
-          ele.classList.add('badge');
-          badgeEle.appendChild(ele);
-        }
-      }, []);
-    }
+    //if ('badges' in data && data.badges !== null) {
+    //  badgeEle.classList.add('badges');
+    //  let badgeGroup = Object.assign({}, twitchBadgeCache.data.global, twitchBadgeCache.data[chan] || {});
+    //  let badges = Object.keys(data.badges).
+    //  forEach(type => {
+    //    let version = data.badges[type];
+    //    // 트위치 예측 이모티콘 구분
+    //    if (type == 'predictions') {
+    //      let number = version.split('-');
+    //    }
+    //    let group = badgeGroup[type];
+    //    if (group && version in group.versions) {
+    //      let url = group.versions[version].image_url_1x;
+    //      let ele = document.createElement('img');
+    //      ele.setAttribute('src', url);
+    //      ele.setAttribute('badgeType', type);
+    //      ele.setAttribute('alt', type);
+    //      ele.classList.add('badge');
+    //      badgeEle.appendChild(ele);
+    //    }
+    //  }, []);
+    //}
     
     let nameEle = document.createElement('span');
     nameEle.classList.add('user-name');

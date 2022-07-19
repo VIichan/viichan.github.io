@@ -552,7 +552,7 @@ function addEmoteDOM(ele, data) {
   data.forEach(n => {
     let out = null;
     if (typeof n === 'string') {
-      out = (n.length < 29) ? document.createTextNode(n) : document.createTextNode(n.splice(0,28) + "...");
+      out = document.createTextNode(n);
     } else
     {
       let { type: [type, subtype], code } = n;

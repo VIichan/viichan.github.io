@@ -4,13 +4,13 @@
         <meta charset="utf-8">
         <title>Chat</title>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="chat.css" rel="stylesheet" type="text/css">
-        <script src="tmi.min.js"></script>
+        <link href="lib/chat.css" rel="stylesheet" type="text/css">
+        <script src="lib/tmi.min.js"></script>
     </head>
     <body>
         <div class="chatbox" id="chatNormal"></div>
         <!--<div class="chatbox" id="chatWarn"></div>-->
-        <script src="chat.js"></script>
+        <script src="lib/chat.js"></script>
         <script>
             const client = new tmi.Client({
                 options: { debug: false },
